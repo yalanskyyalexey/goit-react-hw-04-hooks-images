@@ -56,14 +56,16 @@ function App() {
 	useEffect(() => {
 		if (searchQuery === '') return;
 		getImagesFromApi();
+	}, [searchQuery, currentPage, getImagesFromApi]);
 
-		if (currentPage > 1) {
+	useEffect(() => {
+		if (currentPage >= 1) {
 			window.scrollTo({
 				top: document.documentElement.scrollHeight,
 				behavior: 'smooth',
 			});
 		}
-	}, [searchQuery, currentPage, getImagesFromApi]);
+	}, [images, currentPage]);
 
 	return (
 		<>
